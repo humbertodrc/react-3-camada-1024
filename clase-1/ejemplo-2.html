@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostar Elementos</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- <script src="ejemplo-2.js"></script> -->
+  1-Luke Skywalker
+  2-Darth Vader
+  3-Yoda
+  <script>
+    const CHARACTERS = [
+      'Luke Skywalker',
+      'Darth Vader',
+      'Yoda',
+      'Obi-Wan Kenobi',
+      'Han Solo',
+      'Leia Organa',
+      'Anakin Skywalker',
+      'Padmé Amidala',
+      'Mace Windu',
+      'Qui-Gon Jinn',
+      'Count Dooku',
+      'Kylo Ren',
+      'Rey',
+      'Finn',
+      'Poe Dameron',
+      'BB-8',
+      'R2-D2',
+      'C-3PO',
+      'Chewbacca',
+      'Jabba the Hutt',
+      'Boba Fett',
+      'Darth Maul',
+    ]
+
+    const root = document.getElementById('root');
+
+    const Characters = () => {
+
+      const item = CHARACTERS.map((character, index) => {
+        return React.createElement('li', { key: `${index}`, className: "hola"}, character);
+      })
+
+      return React.createElement('ul', null, item);
+
+    }
+
+    ReactDOM.render(Characters(), root);
+  </script>
+</body>
+
+</html>

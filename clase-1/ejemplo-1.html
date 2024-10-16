@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregando la CDN de React.js</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <!-- <h1 id="titulo">Hola Mundo en React</h1> -->
+  </div>
+
+  <script>
+    const root = document.getElementById('root');
+    console.log(root);
+
+    const title = React.createElement('h1', {id: "miId"}, 'Hola Mundo en React');
+
+    ReactDOM.render(title, root);
+  </script>
+</body>
+
+</html>
