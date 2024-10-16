@@ -2,6 +2,19 @@
 
 ## De JavaScript Vanilla a React
 
+### Recuros
+
+- [React Documentacion](https://react.dev/)
+
+### Extensiones
+
+- [React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+- [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+- [React/Redux/react-router Snippets](https://marketplace.visualstudio.com/items?itemName=discountry.react-redux-react-router-snippets)
+- [Reactjs code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
+- [Simple React Snippets](https://marketplace.visualstudio.com/items?itemName=burkeholland.simple-react-snippets)
+- [Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)
+
 ### Repaso de JavaScript Vanilla
 
 React se construye principalmente con las características de JavaScript moderno (ES6 y versiones posteriores). Asegúrate de que los estudiantes estén familiarizados con los siguientes conceptos:
@@ -18,7 +31,7 @@ Las funciones flecha son una forma más concisa de escribir funciones, y tienen 
 
 ```javascript
 const myFunction = (param1, param2) => {
-  return param1 + param2;
+	return param1 + param2;
 };
 ```
 
@@ -29,8 +42,8 @@ La destructuración permite extraer valores de objetos o arrays de manera sencil
 - Destructuración de objetos:
 
 ```javascript
-const persona = { nombre: "Humberto", edad: 25 };
-const { nombre, edad } = persona; // Extrae 'nombre' y 'edad' del objeto
+const persona = {nombre: "Humberto", edad: 25};
+const {nombre, edad} = persona; // Extrae 'nombre' y 'edad' del objeto
 ```
 
 - Destructuración de arrays:
@@ -67,8 +80,8 @@ El spread operator permite copiar o combinar arrays/objetos de manera más senci
 ```javascript
 const arr1 = [1, 2, 3];
 const arr2 = [...arr1, 4, 5]; // Combina arrays
-const obj1 = { nombre: "Humberto" };
-const obj2 = { ...obj1, edad: 25 }; // Combina objetos
+const obj1 = {nombre: "Humberto"};
+const obj2 = {...obj1, edad: 25}; // Combina objetos
 ```
 
 - Rest parameters:
@@ -83,7 +96,8 @@ sumar(1, 2, 3); // 6
 El operador ternario es una forma concisa de escribir una sentencia if/else.
 
 ```javascript
-const esMayorDeEdad = (edad) => (edad >= 18 ? "Mayor de edad" : "Menor de edad");
+const esMayorDeEdad = (edad) =>
+	edad >= 18 ? "Mayor de edad" : "Menor de edad";
 esMayorDeEdad(25); // "Mayor de edad"
 ```
 
@@ -95,14 +109,14 @@ React utiliza estos métodos de arrays para iterar y manipular datos de una form
 
 ```javascript
 const numeros = [1, 2, 3];
-const duplicados = numeros.map(num => num * 2); // [2, 4, 6]
+const duplicados = numeros.map((num) => num * 2); // [2, 4, 6]
 ```
 
 - `filter()`: Filtra elementos en un array según una condición.
 
 ```javascript
 const edades = [25, 17, 30, 15];
-const mayoresDeEdad = edades.filter(edad => edad >= 18); // [25, 30]
+const mayoresDeEdad = edades.filter((edad) => edad >= 18); // [25, 30]
 ```
 
 - `reduce()`: Reduce un array a un solo valor.
@@ -113,6 +127,7 @@ const suma = numeros.reduce((acc, num) => acc + num, 0); // 10
 ```
 
 <!-- Otros metodos de Array -->
+
 ### Otros métodos de Array
 
 Además de `map()`, `filter()` y `reduce()`, hay otros métodos de arrays que son útiles en React:
@@ -121,24 +136,24 @@ Además de `map()`, `filter()` y `reduce()`, hay otros métodos de arrays que so
 
 ```javascript
 const personas = [
-  { nombre: "Humberto", edad: 25 },
-  { nombre: "María", edad: 30 }
+	{nombre: "Humberto", edad: 25},
+	{nombre: "María", edad: 30},
 ];
-const maria = personas.find(persona => persona.nombre === "María");
+const maria = personas.find((persona) => persona.nombre === "María");
 ```
 
 - `some()`: Verifica si al menos un elemento cumple una condición.
 
 ```javascript
 const edades = [25, 17, 30, 15];
-const esMayor = edades.some(edad => edad >= 18); // true
+const esMayor = edades.some((edad) => edad >= 18); // true
 ```
 
 - `every()`: Verifica si todos los elementos cumplen una condición.
 
 ```javascript
 const edades = [25, 17, 30, 15];
-const todosMayores = edades.every(edad => edad >= 18); // false
+const todosMayores = edades.every((edad) => edad >= 18); // false
 ```
 
 - `sort()`: Ordena los elementos de un array.
