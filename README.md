@@ -31,7 +31,7 @@ Las funciones flecha son una forma más concisa de escribir funciones, y tienen 
 
 ```javascript
 const myFunction = (param1, param2) => {
-	return param1 + param2;
+ return param1 + param2;
 };
 ```
 
@@ -97,7 +97,7 @@ El operador ternario es una forma concisa de escribir una sentencia if/else.
 
 ```javascript
 const esMayorDeEdad = (edad) =>
-	edad >= 18 ? "Mayor de edad" : "Menor de edad";
+ edad >= 18 ? "Mayor de edad" : "Menor de edad";
 esMayorDeEdad(25); // "Mayor de edad"
 ```
 
@@ -136,8 +136,8 @@ Además de `map()`, `filter()` y `reduce()`, hay otros métodos de arrays que so
 
 ```javascript
 const personas = [
-	{nombre: "Humberto", edad: 25},
-	{nombre: "María", edad: 30},
+ {nombre: "Humberto", edad: 25},
+ {nombre: "María", edad: 30},
 ];
 const maria = personas.find((persona) => persona.nombre === "María");
 ```
@@ -170,3 +170,29 @@ const edadesOrdenadas = edades.sort((a, b) => a - b); // [15, 17, 25, 30]
 - `splice()`: Modifica un array eliminando o reemplazando elementos. No se recomienda su uso en React, ya que muta el array original.
 
 - `push()`, `pop()`, `shift()`, `unshift()`: Métodos que mutan el array original. En React, se recomienda usar métodos inmutables.
+
+### Babel
+
+Babel es una herramienta que permite transformar código JavaScript moderno (ES6+) en código JavaScript compatible con versiones anteriores. React utiliza Babel para compilar el código JSX y ES6 a JavaScript estándar.
+
+Ejemplo de uso con CDN:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ </head>
+ <body>
+  <div id="root"></div>
+  <script type="text/babel">
+   const App = () => <h1>Hello, World!</h1>;
+   ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+ </body>
+</html>
+```
