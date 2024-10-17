@@ -196,3 +196,46 @@ Ejemplo de uso con CDN:
  </body>
 </html>
 ```
+
+### JSX
+
+JSX es una extensión de JavaScript que permite escribir código HTML dentro de JavaScript. Es una parte fundamental de React, ya que facilita la creación de componentes.
+
+Ejemplo de JSX:
+
+```javascript
+const App = () => {
+ return <h1>Hello, World!</h1>;
+};
+```
+
+### Componentes
+
+Los componentes son la base de React. Pueden ser funciones o clases que devuelven elementos JSX.
+
+- Componentes funcionales:
+
+```javascript
+const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
+```
+
+- Componentes de clase:
+
+```javascript
+class Saludo extends React.Component {
+ render() {
+ return <h1>Hola, {this.props.nombre}!</h1>;
+ }
+}
+```
+
+### Props
+
+Las props son los datos que se pasan de un componente padre a un componente hijo. Son inmutables y se utilizan para personalizar los componentes.
+
+Ejemplo de uso de props:
+
+```javascript
+const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
+ReactDOM.render(<Saludo nombre="Humberto" />, document.getElementById("root"));
+```
