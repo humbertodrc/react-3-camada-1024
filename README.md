@@ -31,7 +31,7 @@ Las funciones flecha son una forma más concisa de escribir funciones, y tienen 
 
 ```javascript
 const myFunction = (param1, param2) => {
- return param1 + param2;
+	return param1 + param2;
 };
 ```
 
@@ -97,7 +97,7 @@ El operador ternario es una forma concisa de escribir una sentencia if/else.
 
 ```javascript
 const esMayorDeEdad = (edad) =>
- edad >= 18 ? "Mayor de edad" : "Menor de edad";
+	edad >= 18 ? "Mayor de edad" : "Menor de edad";
 esMayorDeEdad(25); // "Mayor de edad"
 ```
 
@@ -136,8 +136,8 @@ Además de `map()`, `filter()` y `reduce()`, hay otros métodos de arrays que so
 
 ```javascript
 const personas = [
- {nombre: "Humberto", edad: 25},
- {nombre: "María", edad: 30},
+	{nombre: "Humberto", edad: 25},
+	{nombre: "María", edad: 30},
 ];
 const maria = personas.find((persona) => persona.nombre === "María");
 ```
@@ -180,20 +180,20 @@ Ejemplo de uso con CDN:
 ```html
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
- </head>
- <body>
-  <div id="root"></div>
-  <script type="text/babel">
-   const App = () => <h1>Hello, World!</h1>;
-   ReactDOM.render(<App />, document.getElementById("root"));
-  </script>
- </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+			const App = () => <h1>Hello, World!</h1>;
+			ReactDOM.render(<App />, document.getElementById("root"));
+		</script>
+	</body>
 </html>
 ```
 
@@ -205,7 +205,7 @@ Ejemplo de JSX:
 
 ```javascript
 const App = () => {
- return <h1>Hello, World!</h1>;
+	return <h1>Hello, World!</h1>;
 };
 ```
 
@@ -223,11 +223,79 @@ const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
 
 ```javascript
 class Saludo extends React.Component {
- render() {
- return <h1>Hola, {this.props.nombre}!</h1>;
- }
+	render() {
+		return <h1>Hola, {this.props.nombre}!</h1>;
+	}
 }
 ```
+
+### Herrammientas para crear un proyecto de React
+
+- [Create React App](https://create-react-app.dev/): Herramienta oficial para crear proyectos de React con configuración predefinida.
+
+- [Vite](https://vitejs.dev/): Herramienta de desarrollo ultrarrápida para proyectos de React, Vue, Svelte y Vanilla JS.
+
+# Diferencias entre Create React App (CRA) y Vite para crear un proyecto de React
+
+## 1. **Tiempo de Instalación**
+
+- **CRA**: Es relativamente lento al iniciar un nuevo proyecto debido a que instala todas las dependencias y configuraciones necesarias desde el inicio.
+- **Vite**: Mucho más rápido en la instalación inicial gracias a su arquitectura moderna que no necesita instalar todas las dependencias al comenzar.
+
+## 2. **Velocidad de Desarrollo (HMR)**
+
+- **CRA**: Utiliza Webpack como empaquetador, lo que puede hacer que el Hot Module Replacement (HMR) sea más lento, especialmente en proyectos grandes.
+- **Vite**: Proporciona un HMR casi instantáneo al aprovechar el poder de ESModules, haciendo que los cambios en el código se reflejen rápidamente.
+
+## 3. **Soporte para Módulos ECMAScript (ESM)**
+
+- **CRA**: Utiliza una arquitectura tradicional basada en Webpack que no aprovecha al máximo los módulos ESM nativos del navegador.
+- **Vite**: Funciona directamente con ESM, lo que significa que puedes aprovechar módulos más modernos y tener un entorno de desarrollo más eficiente.
+
+## 4. **Tamaño de la Configuración Inicial**
+
+- **CRA**: Proporciona un proyecto con una configuración más pesada debido a la integración con Webpack y Babel.
+- **Vite**: Vite es mucho más ligero y modular. Puedes personalizar la configuración sin una carga pesada por defecto.
+
+## 5. **Configurabilidad**
+
+- **CRA**: Es difícil de configurar, ya que abstrae muchas configuraciones bajo el capó. Necesitas usar `eject` para tener control completo del build.
+- **Vite**: Vite es muy fácil de configurar y ofrece flexibilidad desde el principio sin necesidad de hacer `eject`.
+
+## 6. **Compatibilidad con Tipos de Archivos (Assets)**
+
+- **CRA**: Requiere configuraciones adicionales para soportar archivos como imágenes, fuentes y otros recursos.
+- **Vite**: Integra soporte para varios tipos de archivos de forma nativa, permitiendo importar CSS, imágenes, fuentes, etc., sin configuraciones adicionales.
+
+## 7. **Soporte para JSX**
+
+- **CRA**: Utiliza Babel para procesar JSX, lo cual puede ser más lento en proyectos grandes.
+- **Vite**: Utiliza esbuild para compilar JSX, lo que es mucho más rápido en comparación con Babel.
+
+## 8. **Build para Producción**
+
+- **CRA**: El proceso de build es más lento, ya que Webpack es más pesado y está diseñado para manejar muchas dependencias.
+- **Vite**: Utiliza esbuild para una construcción rápida y eficiente, lo que reduce significativamente los tiempos de build.
+
+## 9. **Ecosistema y Popularidad**
+
+- **CRA**: Es más popular y tiene un ecosistema más grande, por lo que es más fácil encontrar soporte o guías en línea.
+- **Vite**: Está creciendo rápidamente en popularidad debido a su enfoque moderno, pero puede tener menos soporte en comparación con CRA en algunos aspectos.
+
+## 10. **Soporte para TypeScript**
+
+- **CRA**: Incluye soporte nativo para TypeScript sin configuraciones adicionales, pero el proceso de build puede ser más lento debido a Webpack y Babel.
+- **Vite**: También soporta TypeScript de manera eficiente, pero su build es más rápido gracias al uso de esbuild.
+
+## 11. **Ecosistema de Plugins**
+
+- **CRA**: Utiliza el ecosistema de plugins de Webpack y Babel.
+- **Vite**: Tiene un ecosistema de plugins creciente basado en Rollup, lo que lo hace modular y fácil de extender.
+
+## 12. **Conclusión**
+
+- **CRA**: Ideal para proyectos donde la simplicidad y el soporte de la comunidad son más importantes que la velocidad. Es una opción sólida para quienes prefieren configuraciones más estables y tradicionales.
+- **Vite**: Es más adecuado para desarrolladores que priorizan la velocidad y la flexibilidad, especialmente en proyectos modernos que requieren tiempos de carga rápidos y builds eficientes.
 
 ### Props
 
