@@ -7,16 +7,19 @@
   <title>Mostar Elementos</title>
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
 <body>
   <div id="root"></div>
 
+  <li></li>
+
   <!-- <script src="ejemplo-2.js"></script> -->
   1-Luke Skywalker
   2-Darth Vader
   3-Yoda
-  <script>
+  <script type="text/babel">
     const CHARACTERS = [
       'Luke Skywalker',
       'Darth Vader',
@@ -46,15 +49,18 @@
 
     const Characters = () => {
 
-      const item = CHARACTERS.map((character, index) => {
-        return React.createElement('li', { key: `${index}`, className: "hola"}, character);
-      })
-
-      return React.createElement('ul', null, item);
+      return (
+        <ul>
+          <p>Hola</p>
+          {CHARACTERS.map((character, index) => {
+            return <li key={index}>{character}</li>
+          })}
+        </ul>
+      )
 
     }
 
-    ReactDOM.render(Characters(), root);
+    ReactDOM.render(<Characters />, root);
   </script>
 </body>
 
