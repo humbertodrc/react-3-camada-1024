@@ -31,7 +31,7 @@ Las funciones flecha son una forma más concisa de escribir funciones, y tienen 
 
 ```javascript
 const myFunction = (param1, param2) => {
-	return param1 + param2;
+ return param1 + param2;
 };
 ```
 
@@ -97,7 +97,7 @@ El operador ternario es una forma concisa de escribir una sentencia if/else.
 
 ```javascript
 const esMayorDeEdad = (edad) =>
-	edad >= 18 ? "Mayor de edad" : "Menor de edad";
+ edad >= 18 ? "Mayor de edad" : "Menor de edad";
 esMayorDeEdad(25); // "Mayor de edad"
 ```
 
@@ -136,8 +136,8 @@ Además de `map()`, `filter()` y `reduce()`, hay otros métodos de arrays que so
 
 ```javascript
 const personas = [
-	{nombre: "Humberto", edad: 25},
-	{nombre: "María", edad: 30},
+ {nombre: "Humberto", edad: 25},
+ {nombre: "María", edad: 30},
 ];
 const maria = personas.find((persona) => persona.nombre === "María");
 ```
@@ -180,20 +180,20 @@ Ejemplo de uso con CDN:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-	</head>
-	<body>
-		<div id="root"></div>
-		<script type="text/babel">
-			const App = () => <h1>Hello, World!</h1>;
-			ReactDOM.render(<App />, document.getElementById("root"));
-		</script>
-	</body>
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ </head>
+ <body>
+  <div id="root"></div>
+  <script type="text/babel">
+   const App = () => <h1>Hello, World!</h1>;
+   ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+ </body>
 </html>
 ```
 
@@ -205,28 +205,8 @@ Ejemplo de JSX:
 
 ```javascript
 const App = () => {
-	return <h1>Hello, World!</h1>;
+ return <h1>Hello, World!</h1>;
 };
-```
-
-### Componentes
-
-Los componentes son la base de React. Pueden ser funciones o clases que devuelven elementos JSX.
-
-- Componentes funcionales:
-
-```javascript
-const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
-```
-
-- Componentes de clase:
-
-```javascript
-class Saludo extends React.Component {
-	render() {
-		return <h1>Hola, {this.props.nombre}!</h1>;
-	}
-}
 ```
 
 ### Herrammientas para crear un proyecto de React
@@ -297,13 +277,94 @@ class Saludo extends React.Component {
 - **CRA**: Ideal para proyectos donde la simplicidad y el soporte de la comunidad son más importantes que la velocidad. Es una opción sólida para quienes prefieren configuraciones más estables y tradicionales.
 - **Vite**: Es más adecuado para desarrolladores que priorizan la velocidad y la flexibilidad, especialmente en proyectos modernos que requieren tiempos de carga rápidos y builds eficientes.
 
+### Componentes
+
+¿Qué es un componente?
+
+Un componente en React es una pieza reutilizable de la interfaz de usuario. Se puede pensar en los componentes como bloques de construcción que juntos forman la aplicación completa. Cada componente puede tener su propia lógica y estilo.
+
+Los componentes en React son funciones o clases que retornan elementos de JSX (JavaScript XML), una extensión de JavaScript que permite escribir HTML dentro de JavaScript.
+
+- Componentes funcionales:
+
+```javascript
+const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
+```
+
+- Componentes de clase:
+
+```javascript
+class Saludo extends React.Component {
+ render() {
+  return <h1>Hola, {this.props.nombre}!</h1>;
+ }
+}
+```
+
+### ¿Para qué sirven los Componentes?
+
+- Reutilización de código: Puedes crear un componente una vez y usarlo en múltiples partes de la aplicación.
+
+- Mantenimiento: Separar la aplicación en componentes más pequeños y especializados facilita su mantenimiento y escalabilidad.
+
+- Modularidad: Ayuda a dividir la UI en piezas más pequeñas y manejables.
+
+### Buenas prácticas en Componentes
+
+- Dividir en componentes pequeños: Es mejor tener muchos componentes pequeños que un componente gigante que haga muchas cosas.
+
+- Nombres claros: Los nombres de los componentes deben ser descriptivos.
+
+- Mantener el estado en el componente adecuado: Solo coloca el estado donde realmente se necesita.
+
+- Evitar lógica pesada dentro de la UI: Mueve la lógica compleja fuera de los componentes de presentación (como funciones de utilidades).
+
+- Componentes puros: Siempre que sea posible, crea componentes "puros" que no manejen estado, sino que solo reciban props y devuelvan JSX.
+
+### Reutilización de componentes
+
+Una de las ventajas de React es la reutilización de componentes. Puedes crear componentes genéricos y reutilizarlos en diferentes partes de la aplicación.
+
+Ejemplo de componente genérico:
+
+```javascript
+const Boton = ({texto, onClick}) => <button onClick={onClick}>{texto}</button>;
+```
+
 ### Props
 
-Las props son los datos que se pasan de un componente padre a un componente hijo. Son inmutables y se utilizan para personalizar los componentes.
+Las props (propiedades) son la forma de pasar datos a los componentes en React. Las props son inmutables y se pasan de arriba hacia abajo en la jerarquía de componentes.
 
 Ejemplo de uso de props:
 
 ```javascript
 const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
-ReactDOM.render(<Saludo nombre="Humberto" />, document.getElementById("root"));
+const App = () => <Saludo nombre="Humberto" />;
+```
+
+### Prop Children + Fragment
+
+La prop especial `children` permite pasar elementos JSX anidados a un componente. Puedes usar `children` para envolver contenido dentro de un componente.
+
+Ejemplo de uso de `children`:
+
+```javascript
+const Card = ({children}) => <div className="card">{children}</div>;
+const App = () => (
+ <Card>
+ <h2>Título</h2>
+ <p>Contenido de la tarjeta</p>
+ </Card>
+);
+```
+
+Los fragmentos (`<></>`) son una forma de envolver múltiples elementos JSX sin agregar nodos adicionales al DOM.
+
+```javascript
+const App = () => (
+ <>
+ <h1>Título 1</h1>
+ <h2>Título 2</h2>
+ </>
+);
 ```
