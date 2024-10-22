@@ -368,3 +368,23 @@ const App = () => (
  </>
 );
 ```
+
+### Exportar e Importar Componentes
+
+Exportación por defecto para componentes: Es común exportar los componentes React por defecto, ya que suelen ser el único elemento exportado por archivo y es más fácil de importar.
+
+Exportación sin default para utilidades y constantes: Para funciones de utilidad, hooks personalizados o constantes, se recomienda usar export sin default, ya que permite agrupar varias exportaciones en un solo archivo y la importación es más clara.
+
+Ejemplo de exportación por defecto:
+
+```javascript
+const Saludo = ({nombre}) => <h1>Hola, {nombre}!</h1>;
+export default Saludo;
+```
+
+Ejemplo de exportación sin default:
+
+```javascript
+export const sumar = (a, b) => a + b;
+export const restar = (a, b) => a - b;
+```
