@@ -352,8 +352,8 @@ Ejemplo de uso de `children`:
 const Card = ({children}) => <div className="card">{children}</div>;
 const App = () => (
  <Card>
- <h2>Título</h2>
- <p>Contenido de la tarjeta</p>
+  <h2>Título</h2>
+  <p>Contenido de la tarjeta</p>
  </Card>
 );
 ```
@@ -363,8 +363,8 @@ Los fragmentos (`<></>`) son una forma de envolver múltiples elementos JSX sin 
 ```javascript
 const App = () => (
  <>
- <h1>Título 1</h1>
- <h2>Título 2</h2>
+  <h1>Título 1</h1>
+  <h2>Título 2</h2>
  </>
 );
 ```
@@ -387,4 +387,105 @@ Ejemplo de exportación sin default:
 ```javascript
 export const sumar = (a, b) => a + b;
 export const restar = (a, b) => a - b;
+```
+
+### Inmutabilidad en React
+
+La inmutabilidad es un concepto clave en React que consiste en no modificar directamente los datos, sino crear copias de los mismos. Esto ayuda a prevenir efectos secundarios y facilita el seguimiento de los cambios en la aplicación.
+
+Ejemplo de inmutabilidad en React:
+
+```javascript
+// Modificación directa (mutación)
+const numeros = [1, 2, 3];
+numeros.push(4); // Modifica el array original
+
+// Inmutabilidad (crea una copia)
+const nuevosNumeros = [...numeros, 4]; // Crea una nueva copia del array
+```
+
+- Por qué es importante:
+
+1. React compara los objetos previos con los nuevos para optimizar la actualización del DOM (re-render).
+
+2. Manipular el estado directamente puede causar errores impredecibles en la interfaz.
+
+3. La inmutabilidad facilita el seguimiento de los cambios en la aplicación.
+
+### Prop key y map()
+
+La prop `key` es un atributo especial que se utiliza en React para identificar de forma única los elementos de una lista. Es importante incluir `key` al renderizar listas de elementos para mejorar el rendimiento y la eficiencia de React.
+
+- Por qué es importante:
+
+1. Ayuda a React a identificar qué elementos han cambiado, se añadido o eliminado.
+
+2. Mejora el rendimiento al evitar la re-renderización innecesaria de elementos.
+
+3. Evita errores y advertencias en la consola de desarrollo.
+
+Ejemplo de uso de `key` con `map()`:
+
+```javascript
+const frutas = ["manzana", "plátano", "naranja"];
+
+const listaFrutas = frutas.map((fruta, index) => <li key={index}>{fruta}</li>);
+```
+
+### Estilos en React
+
+Hay varias formas de aplicar estilos a los componentes en React. Puedes usar CSS tradicional, CSS-in-JS, módulos CSS, o incluso inline styles. Cada enfoque tiene sus ventajas y desventajas, y la elección depende del proyecto y las preferencias del equipo.
+
+- CSS tradicional:
+
+```css
+/* styles.css */
+.card {
+ background-color: lightblue;
+}
+```
+
+```javascript
+// Componente
+import "./styles.css";
+
+const Card = () => <div className="card">Contenido de la tarjeta</div>;
+```
+
+- CSS-in-JS (Styled Components):
+
+```javascript
+import styled from "styled-components";
+
+const Card = styled.div`
+ background-color: lightblue;
+`;
+
+const App = () => <Card>Contenido de la tarjeta</Card>;
+```
+
+- Módulos CSS:
+
+```css
+/* styles.module.css */
+.card {
+ background-color: lightblue;
+}
+```
+
+```javascript
+// Componente
+import styles from "./styles.module.css";
+
+const Card = () => <div className={styles.card}>Contenido de la tarjeta</div>;
+```
+
+- Inline styles:
+
+```javascript
+const cardStyles = {
+ backgroundColor: "lightblue",
+};
+
+const Card = () => <div style={cardStyles}>Contenido de la tarjeta</div>;
 ```
