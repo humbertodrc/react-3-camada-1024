@@ -1,10 +1,10 @@
 
 
-const Title = () => {
+const Title = ({title, subtitle}) => {
   return (
     <>
-      <h1>Soy el titulo principal</h1>
-      <h2>Soy el subtitulo</h2>
+      <h1>{title }</h1>
+      <h2>{subtitle}</h2>
     </>
   )
 }

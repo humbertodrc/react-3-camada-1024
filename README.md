@@ -215,7 +215,7 @@ const App = () => {
 
 - [Vite](https://vitejs.dev/): Herramienta de desarrollo ultrarrápida para proyectos de React, Vue, Svelte y Vanilla JS.
 
-# Diferencias entre Create React App (CRA) y Vite para crear un proyecto de React
+### Diferencias entre Create React App (CRA) y Vite para crear un proyecto de React
 
 ## 1. **Tiempo de Instalación**
 
