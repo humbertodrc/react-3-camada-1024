@@ -506,6 +506,82 @@ Los Hooks son funciones que permiten usar el estado y otras características de 
 - `useEffect`: Manejo de efectos secundarios, como llamadas a API o suscripciones.
 - Otros: `useContext`, `useReducer`, `useMemo`, etc.
 
+### Reglas de los Hooks
+
+#### Sigue la convención de nombres para Custom Hooks
+
+- **Qué significa**: Los custom hooks (tus propios hooks) deben empezar con `use` en su nombre, como `useFetch`, `useAuth`, etc.
+- **Por qué**: Esto permite que React identifique estas funciones como hooks y aplique las reglas de validación automáticamente.
+
+#### Ejemplo Correcto
+
+```javascript
+function useCounter(initialValue = 0) {
+ const [count, setCount] = useState(initialValue);
+}
+```
+
+---
+
+#### Evita usar Hooks dentro de condicionales
+
+- **Qué significa**: No coloques Hooks dentro de condicionales, ya que esto puede llevar a que se pierda el estado o se creen referencias incorrectas.
+
+Ejemplo Incorrecto
+
+```javascript
+if (condicion) {
+ const [count, setCount] = useState(0); // Incorrecto: Hook dentro de un condicional
+}
+```
+
+---
+
+#### Evita usar Hooks dentro de loops
+
+- **Qué significa**: No coloques Hooks dentro de loops, ya que esto puede llevar a que se pierda el estado o se creen referencias incorrectas.
+
+Ejemplo Incorrecto
+
+```javascript
+for (let i = 0; i < 5; i++) {
+ const [count, setCount] = useState(0); // Incorrecto: Hook dentro de un loop
+}
+```
+
+---
+
+#### Usa Hooks solo en componentes funcionales o funciones personalizadas (custom hooks)
+
+- **Qué significa**: Los Hooks solo deben usarse en componentes funcionales de React o en funciones personalizadas que empiecen con `use`.
+
+Ejemplo Correcto
+
+```javascript
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  return <p>{count}</p>;
+}
+
+function useCustomHook() {
+  const [value, setValue] = useState('Hello');
+  return [value, setValue];
+}
+```
+
+#### Evita usar Hooks dentro de callbacks innecesarios
+
+- **Qué significa**: No coloques Hooks dentro de callbacks de otras funciones, ya que esto puede llevar a que se pierda el estado o se creen referencias incorrectas.
+
+Ejemplo Incorrecto
+
+```javascript
+const handleClick = () => {
+ const [count, setCount] = useState(0); // Incorrecto: Hook dentro de un callback
+ setCount(count + 1);
+};
+```
+
 ### Hook: `useState`
 
 El hook `useState` permite agregar un estado local a los componentes funcionales. Devuelve un array con dos elementos:
@@ -561,3 +637,12 @@ name = "Doe";
 // Correcto: usando setState para actualizar el estado
 setName("Doe");
 ```
+
+### Resumen del Ciclo de Vida de useState
+
+- Inicialización: Solo una vez en la primera renderización.
+- Actualización: Mediante setState, provoca un re-render del componente.
+- Persistencia en Re-renders: El estado persiste entre renderizados sin usar el valor inicial.
+- Inmutabilidad: React gestiona el estado como inmutable.
+- Persistencia durante la vida del componente: La referencia del estado no cambia entre renderizados.
+- Desmontaje: El estado se descarta al desmontar el componente.
