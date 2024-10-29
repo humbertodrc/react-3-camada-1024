@@ -489,3 +489,75 @@ const cardStyles = {
 
 const Card = () => <div style={cardStyles}>Contenido de la tarjeta</div>;
 ```
+
+### Introducción a React Hooks
+
+Los Hooks son funciones que permiten usar el estado y otras características de React sin escribir una clase. Fueron introducidos en React 16.8 y cambiaron la forma en que componemos la lógica en componentes.
+
+### Ventajas de los Hooks
+
+- Facilitan el uso del estado y el ciclo de vida en componentes funcionales.
+- Promueven la reutilización de lógica entre componentes.
+- Evitan el uso excesivo de componentes de clase y hacen el código más limpio y sencillo.
+
+### Principales Hooks
+
+- `useState`: Manejo de estado local en un componente.
+- `useEffect`: Manejo de efectos secundarios, como llamadas a API o suscripciones.
+- Otros: `useContext`, `useReducer`, `useMemo`, etc.
+
+### Hook: `useState`
+
+El hook `useState` permite agregar un estado local a los componentes funcionales. Devuelve un array con dos elementos:
+
+1. El valor actual del estado.
+
+2. Una función para actualizar el valor del estado.
+
+### Sintaxis Básica
+
+```javascript
+const [count, setCount] = useState(initialValue);
+```
+
+- `count`: Es el estado que estamos definiendo.
+- `setCount`: Es la función para actualizar el estado.
+- `initialValue`: Valor inicial del estado.
+
+### Ejemplo Básico: Contador
+
+```javascript
+import React, {useState} from "react";
+
+function Contador() {
+ const [count, setCount] = useState(0);
+
+ return (
+  <div>
+   <p>Has hecho clic {count} veces</p>
+   <button onClick={() => setCount(count + 1)}>Incrementar</button>
+  </div>
+ );
+}
+
+export default Contador;
+```
+
+**Explicación**: Cada vez que el botón es presionado, `setCount` actualiza el estado `count` y el componente se vuelve a renderizar con el nuevo valor.
+
+### `state` vs `setState`
+
+- `state` es la variable que almacena el valor actual del estado.
+- `setState` es la función que permite modificar el valor de `state`. La razón para separar estas dos es mantener el estado inmutable, es decir, el valor de `state` no se modifica directamente, sino que se crea una nueva versión a través de `setState`.
+
+### Ejemplo de diferencia
+
+```javascript
+const [name, setName] = useState("John");
+
+// Incorrecto: mutación directa de estado
+name = "Doe";
+
+// Correcto: usando setState para actualizar el estado
+setName("Doe");
+```
