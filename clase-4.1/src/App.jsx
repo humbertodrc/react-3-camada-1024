@@ -19,7 +19,7 @@ function App() {
 					/>
         ))}
         
-        {JSON.stringify(goku, null, 2)}
+				{JSON.stringify(goku, null, 2)}
 			</section>
 		</main>
 	);
