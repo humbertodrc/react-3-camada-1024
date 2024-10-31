@@ -1,0 +1,25 @@
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.titleCard {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: black;
+}
