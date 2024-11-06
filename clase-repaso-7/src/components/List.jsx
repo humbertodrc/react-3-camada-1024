@@ -1,9 +1,13 @@
+import { useTodos } from '../hooks/useTodos';
 import ListItem from "./ListItem";
 
-const List = ({todos, handleToggleCompletedTodo, handleDeleteTodo}) => {
+const List = () => {
+  
+  const {todos, handleToggleCompletedTodo, handleDeleteTodo } = useTodos()
+
 	return (
 		<ul>
-			{todos.map((todoList) => (
+			{todos?.map((todoList) => (
 				<ListItem
 					key={todoList.id}
 					todoList={todoList}

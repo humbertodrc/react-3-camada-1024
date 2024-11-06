@@ -1,8 +1,10 @@
+
 const ListItem = ({todoList, handleToggleCompletedTodo, handleDeleteTodo}) => {
+
 	return (
 		<li key={todoList.id}>
 			<input
-        checked={todoList.completed}
+				checked={todoList.completed}
 				type="checkbox"
 				onChange={() => handleToggleCompletedTodo(todoList.id)}
 			/>
