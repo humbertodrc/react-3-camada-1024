@@ -1,9 +1,10 @@
 import { useTodos } from '../hooks/useTodos';
 import ListItem from "./ListItem";
 
-const List = () => {
+const List = ({todos}) => {
   
-  const {todos, handleToggleCompletedTodo, handleDeleteTodo } = useTodos()
+  const {handleToggleCompletedTodo, handleDeleteTodo } = useTodos()
+  console.log(todos);
 
 	return (
 		<ul>

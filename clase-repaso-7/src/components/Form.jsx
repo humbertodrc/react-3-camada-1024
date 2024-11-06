@@ -2,15 +2,14 @@ import { useTodos } from '../hooks/useTodos';
 
 const Form = () => {
   
-  const { handleAddTodoSubmit, todo: value, handleAddTodoOnchange } = useTodos()
-  console.log(value);
+  const { handleAddTodoSubmit, todo , handleAddTodoOnchange } = useTodos()
 
 	return (
 		<form onSubmit={handleAddTodoSubmit}>
 			<div>
 				<label htmlFor="name">Tarea:</label>
 				<input
-					value={value.name}
+					value={todo.text}
 					onChange={handleAddTodoOnchange}
 					type="text"
 					id="todo"

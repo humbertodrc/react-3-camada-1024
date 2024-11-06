@@ -6,7 +6,7 @@ const INITIAL_TODOS = [
 ];
 
 export const useTodos = () => {
-	const [todos, setTodos] = useState([]);
+	const [todos, setTodos] = useState(INITIAL_TODOS);
 	const [todo, setTodo] = useState({
 		id: "",
 		text: "",
@@ -21,14 +21,12 @@ export const useTodos = () => {
 	};
 
   const handleAddTodoSubmit = (event) => {
-    console.log('handleAddTodoSubmit');
 		event.preventDefault();
 
 		if (todo.text.trim() === "") {
 			return;
 		}
 
-		event.preventDefault();
 		setTodos([
 			...todos,
 			{
