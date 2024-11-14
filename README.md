@@ -646,3 +646,206 @@ setName("Doe");
 - Inmutabilidad: React gestiona el estado como inmutable.
 - Persistencia durante la vida del componente: La referencia del estado no cambia entre renderizados.
 - Desmontaje: El estado se descarta al desmontar el componente.
+
+### Hook `useEffect`
+
+El hook `useEffect` permite realizar efectos secundarios en componentes funcionales. Se ejecuta después de cada renderizado y puede limpiar los efectos cuando el componente se desmonta.
+
+### Sintaxis Básica
+
+```javascript
+useEffect(() => {
+ // Código de efecto secundario
+}, [dependencies]);
+```
+
+- `dependencies`: Un array opcional de dependencias que determina cuándo se ejecuta el efecto. Si no se proporciona, el efecto se ejecuta después de cada renderizado.
+
+### Ejemplo Básico: Título de la Página
+
+```javascript
+import React, {useEffect, useState} from "react";
+
+function PageTitle() {
+ const [count, setCount] = useState(0);
+
+ useEffect(() => {
+  document.title = `Contador: ${count}`;
+ }, [count]);
+
+ return (
+  <div>
+   <p>Has hecho clic {count} veces</p>
+   <button onClick={() => setCount(count + 1)}>Incrementar</button>
+  </div>
+ );
+}
+```
+
+**Explicación**: El efecto se ejecuta cada vez que `count` cambia, actualizando el título de la página con el valor actual de `count`.
+
+### `useEffect` con Dependencias
+
+- Si `dependencies` es un array vacío (`[]`), el efecto se ejecuta solo una vez después del primer renderizado.
+
+- Si `dependencies` contiene valores, el efecto se ejecuta cada vez que uno de esos valores cambia.
+
+- Si no se proporciona `dependencies`, el efecto se ejecuta después de cada renderizado.
+
+### Ejemplo de `useEffect` sin Dependencias
+
+```javascript
+useEffect(() => {
+ console.log("Efecto ejecutado");
+});
+```
+
+**Explicación**: Este efecto se ejecuta después de cada renderizado del componente.
+
+### Ejemplo de `useEffect` con Dependencias
+
+```javascript
+useEffect(() => {
+ console.log("Efecto ejecutado");
+}, [count]);
+```
+
+**Explicación**: Este efecto se ejecuta solo cuando `count` cambia.
+
+### Limpieza de Efectos
+
+El hook `useEffect` puede devolver una función de limpieza que se ejecuta cuando el componente se desmonta o cuando las dependencias cambian.
+
+### Ejemplo de Limpieza de Efectos
+
+```javascript
+useEffect(() => {
+ console.log("Efecto ejecutado");
+
+ return () => {
+  console.log("Efecto limpiado");
+ };
+}, [count]);
+```
+
+**Explicación**: La función de limpieza se ejecuta antes de que el efecto se vuelva a ejecutar o cuando el componente se desmonta.
+
+### Resumen del Ciclo de Vida de useEffect
+
+- Inicialización: Se ejecuta después del primer renderizado.
+
+- Actualización: Se ejecuta después de cada renderizado si las dependencias han cambiado.
+
+- Limpieza: Se ejecuta antes de que el efecto se vuelva a ejecutar o cuando el componente se desmonta.
+
+- Dependencias: Determinan cuándo se ejecuta el efecto.
+
+- Efectos secundarios: Se utilizan para realizar tareas como llamadas a API, suscripciones, actualizaciones del DOM, etc.
+
+### Hook `useMemo`
+
+El hook `useMemo` permite memorizar el resultado de una función para evitar cálculos innecesarios en componentes funcionales.
+
+### Sintaxis Básica useMemo
+
+```javascript
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+```
+
+- `computeExpensiveValue`: Función que realiza un cálculo costoso.
+
+- `[a, b]`: Dependencias que determinan cuándo se recalcula el valor.
+
+### Ejemplo Básico: Cálculo de Factorial
+
+```javascript
+import React, {useState, useMemo} from "react";
+
+function Factorial() {
+ const [number, setNumber] = useState(0);
+
+ const factorial = useMemo(() => {
+  let result = 1;
+  for (let i = 1; i <= number; i++) {
+   result *= i;
+  }
+  return result;
+ }, [number]);
+
+ return (
+  <div>
+   <input
+    type="number"
+    value={number}
+    onChange={(e) => setNumber(parseInt(e.target.value))}
+   />
+   <p>Factorial de {number} es: {factorial}</p>
+  </div>
+ );
+}
+```
+
+**Explicación**: El cálculo del factorial se realiza solo cuando `number` cambia, evitando cálculos innecesarios en cada renderizado.
+
+### Resumen del Ciclo de Vida de useMemo
+
+- Inicialización: Se ejecuta después del primer renderizado.
+
+- Actualización: Se ejecuta cuando las dependencias cambian.
+
+- Memorización: Almacena el resultado de una función costosa para evitar cálculos innecesarios.
+
+- Dependencias: Determinan cuándo se recalcula el valor.
+
+- Cálculos costosos: Se utilizan para optimizar el rendimiento de componentes.
+
+### Hook `useCallback`
+
+El hook `useCallback` permite memorizar una función para evitar la creación de nuevas instancias en cada renderizado de componentes.
+
+### Sintaxis Básica useCallback
+
+```javascript
+const memoizedCallback = useCallback(() => {
+ // Código de la función
+}, [dependencies]);
+```
+
+- `dependencies`: Un array de dependencias que determina cuándo se crea una nueva instancia de la función.
+
+### Ejemplo Básico: Manejo de Eventos
+
+```javascript
+import React, {useState, useCallback} from "react";
+
+function Eventos() {
+ const [count, setCount] = useState(0);
+
+ const increment = useCallback(() => {
+  setCount(count + 1);
+ }, [count]);
+
+ return (
+  <div>
+   <p>Has hecho clic {count} veces</p>
+   <button onClick={increment}>Incrementar</button>
+  </div>
+ );
+}
+```
+
+**Explicación**: La función `increment` se memoriza y solo se crea una nueva instancia cuando `count` cambia, evitando re-renderizados innecesarios.
+
+### Resumen del Ciclo de Vida de useCallback
+
+- Inicialización: Se ejecuta después del primer renderizado.
+
+- Actualización: Se ejecuta cuando las
+
+- Dependencias cambian.
+
+- Memorización: Almacena una función para evitar la creación de nuevas instancias.
+
+- Dependencias: Determinan cuándo se crea una nueva instancia de la función.
+
+- Manejo de Eventos: Se utiliza para optimizar el rendimiento de componentes que manejan eventos.
