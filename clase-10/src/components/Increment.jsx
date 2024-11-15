@@ -1,5 +1,7 @@
-const Increment = ({onIncrement}) => {
-	console.log("Child component rendered");
+import {memo} from 'react';
+
+const Increment = ({ onIncrement }) => {
+	console.log("Hijo component rendered");
 	return <button onClick={onIncrement}>Increment</button>;
 };
-export default Increment;
+export default memo(Increment);

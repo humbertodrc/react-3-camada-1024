@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {data} from "../database";
 
 const averageCalc = (list) => {
@@ -10,7 +10,8 @@ const averageCalc = (list) => {
 const Statistics = () => {
 	const [show, setShow] = useState(false);
 
-	const average = averageCalc(data);
+	const average = useMemo(() => averageCalc(data), []);
+	// const average = averageCalc(data);
 
 	console.log("Renderizado de Statistics");
 
