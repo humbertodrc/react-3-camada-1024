@@ -559,13 +559,13 @@ Ejemplo Correcto
 
 ```javascript
 function MyComponent() {
-  const [count, setCount] = useState(0);
-  return <p>{count}</p>;
+ const [count, setCount] = useState(0);
+ return <p>{count}</p>;
 }
 
 function useCustomHook() {
-  const [value, setValue] = useState('Hello');
-  return [value, setValue];
+ const [value, setValue] = useState("Hello");
+ return [value, setValue];
 }
 ```
 
@@ -779,7 +779,9 @@ function Factorial() {
     value={number}
     onChange={(e) => setNumber(parseInt(e.target.value))}
    />
-   <p>Factorial de {number} es: {factorial}</p>
+   <p>
+    Factorial de {number} es: {factorial}
+   </p>
   </div>
  );
 }
@@ -849,3 +851,201 @@ function Eventos() {
 - Dependencias: Determinan cuándo se crea una nueva instancia de la función.
 
 - Manejo de Eventos: Se utiliza para optimizar el rendimiento de componentes que manejan eventos.
+
+### Guía de Instalación y Configuración de React Router
+
+## 1. Instalar React Router
+
+Primero, instala la biblioteca en tu proyecto:
+
+```bash
+npm install react-router-dom
+```
+
+## 2. Configurar el enrutador principal
+
+Envuelve tu aplicación con el componente `<BrowserRouter>` para habilitar el enrutamiento:
+
+```jsx
+import {BrowserRouter} from "react-router-dom";
+
+function App() {
+ return (
+  <BrowserRouter>
+   <div>{/* Aquí irán tus rutas */}</div>
+  </BrowserRouter>
+ );
+}
+
+export default App;
+```
+
+## 3. Definir las rutas
+
+Utiliza el componente `<Routes>` y define las rutas con `<Route>` dentro de `<BrowserRouter>`:
+
+```jsx
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+
+function App() {
+ return (
+  <BrowserRouter>
+   <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="*" element={<NotFound />} />
+   </Routes>
+  </BrowserRouter>
+ );
+}
+
+export default App;
+```
+
+- **`path`**: Define la URL.
+- **`element`**: El componente que se renderizará.
+
+## 4. Crear los componentes de las páginas
+
+Crea componentes para cada página (por ejemplo, `Home`, `About`, `NotFound`).
+
+```jsx
+// Home.jsx
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+export default Home;
+
+// About.jsx
+function About() {
+  return <h1>About Page</h1>;
+}
+
+export default About;
+
+// NotFound.jsx
+function NotFound() {
+  return <h1>404 - Page Not Found</h1>;
+}
+
+export default NotFound;
+```
+
+## 5. Navegar entre rutas
+
+Utiliza el componente `<Link>` o el hook `useNavigate` para navegar entre las páginas.
+
+**Con `<Link>`:**
+
+```jsx
+import {Link} from "react-router-dom";
+
+function Navbar() {
+ return (
+  <nav>
+   <Link to="/">Home</Link>
+   <Link to="/about">About</Link>
+  </nav>
+ );
+}
+
+export default Navbar;
+```
+
+**Con `useNavigate`:**
+
+```jsx
+import {useNavigate} from "react-router-dom";
+
+function Example() {
+ const navigate = useNavigate();
+
+ const goToAbout = () => {
+  navigate("/about");
+ };
+
+ return <button onClick={goToAbout}>Go to About</button>;
+}
+
+export default Example;
+```
+
+## 6. Parámetros de ruta
+
+Si necesitas manejar rutas dinámicas, usa `:param` en el `path` y accede al valor con `useParams`.
+
+**Configurar una ruta con parámetro:**
+
+```jsx
+<Route path="/user/:id" element={<User />} />
+```
+
+**Usar `useParams` en el componente:**
+
+```jsx
+import {useParams} from "react-router-dom";
+
+function User() {
+ const {id} = useParams();
+ return <h1>User ID: {id}</h1>;
+}
+
+export default User;
+```
+
+## 7. Manejar Redirecciones
+
+Utiliza el componente `<Navigate>` para redirigir a otra ruta.
+
+```jsx
+import {Navigate} from "react-router-dom";
+
+function ProtectedRoute({isLoggedIn}) {
+ return isLoggedIn ? <h1>Welcome!</h1> : <Navigate to="/" />;
+}
+```
+
+## 8. Opcional: Rutas anidadas
+
+Puedes definir rutas anidadas utilizando el componente `<Outlet>`.
+
+**Configurar rutas anidadas:**
+
+```jsx
+<Route path="/dashboard" element={<Dashboard />}>
+ <Route path="stats" element={<Stats />} />
+ <Route path="settings" element={<Settings />} />
+</Route>
+```
+
+**Usar `<Outlet>` en el componente:**
+
+```jsx
+import {Outlet} from "react-router-dom";
+
+function Dashboard() {
+ return (
+  <div>
+   <h1>Dashboard</h1>
+   <Outlet />
+  </div>
+ );
+}
+
+export default Dashboard;
+```
+
+## Resumen
+
+1. Instala React Router.
+2. Envuelve tu aplicación con `<BrowserRouter>`.
+3. Define tus rutas con `<Routes>` y `<Route>`.
+4. Crea componentes para tus páginas.
+5. Navega entre rutas con `<Link>` o `useNavigate`.
+6. Maneja parámetros dinámicos con `useParams`.
+7. Utiliza `<Navigate>` para redirecciones.
+8. Implementa rutas anidadas con `<Outlet>`.
