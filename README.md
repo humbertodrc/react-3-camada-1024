@@ -651,7 +651,7 @@ setName("Doe");
 
 El hook `useEffect` permite realizar efectos secundarios en componentes funcionales. Se ejecuta después de cada renderizado y puede limpiar los efectos cuando el componente se desmonta.
 
-### Sintaxis Básica
+### Sintaxis Básica useEffect
 
 ```javascript
 useEffect(() => {
