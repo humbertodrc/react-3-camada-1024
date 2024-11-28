@@ -1,15 +1,14 @@
-import './App.css'
-import ThemeApp from './components/themeApp/ThemeApp'
-// import Autenticacion from './components/Autenticacion'
+import "./App.css";
+// import Autenticacion from "./components/Autenticacion";
+import ThemeApp from "./components/themeApp/ThemeApp";
 
 function App() {
-
-  return (
-    <>
-      <ThemeApp/>
-      {/* <Autenticacion /> */}
-    </>
-  )
+	return (
+		<>
+			<ThemeApp />
+			{/* <Autenticacion /> */}
+		</>
+	);
 }
 
-export default App
+export default App;
