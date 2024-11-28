@@ -1413,3 +1413,253 @@ El Context en React se propaga a través del árbol de componentes, lo que signi
 - Divide el Context en múltiples Contexts: Si tienes datos relacionados pero independientes, considera dividirlos en múltiples Contexts en lugar de un solo Context grande.
 
 - Usa Context con moderación: Context es una herramienta poderosa, pero no siempre es la mejor opción. Antes de usar Context, considera si hay una forma más simple de compartir datos, como props o hooks.
+
+### LocalStorage en React
+
+### ¿Qué es LocalStorage?
+
+LocalStorage es una característica de los navegadores web que permite almacenar datos de forma persistente en el navegador. Los datos almacenados en LocalStorage permanecen incluso después de cerrar el navegador y reiniciar la computadora.
+
+### ¿Por qué usar LocalStorage en React?
+
+LocalStorage es útil para almacenar datos en el navegador del usuario, como preferencias de usuario, configuraciones, carritos de compras, etc. Al usar LocalStorage en React, puedes mantener el estado de la aplicación incluso después de recargar la página o cerrar el navegador.
+
+### ¿Cómo usar LocalStorage en React?
+
+Para usar LocalStorage en React, sigue estos pasos:
+
+1. Importa el hook useState de React.
+
+2. Usa useState para inicializar el estado con los datos de LocalStorage.
+
+3. Guarda y actualiza los datos en LocalStorage utilizando el hook useEffect.
+
+### Ejemplo de LocalStorage en React
+
+```javascript
+import React, {useState, useEffect} from "react";
+
+const App = () => {
+ const [count, setCount] = useState(() => {
+  const storedCount = localStorage.getItem("count");
+  return storedCount ? JSON.parse(storedCount) : 0;
+ });
+
+ useEffect(() => {
+  localStorage.setItem("count", JSON.stringify(count));
+ }, [count]);
+
+ return (
+  <div>
+   <p>Count: {count}</p>
+   <button onClick={() => setCount(count + 1)}>Increment</button>
+  </div>
+ );
+};
+```
+
+### Ventajas de LocalStorage en React
+
+- Persistencia de datos: Los datos almacenados en LocalStorage persisten incluso después de cerrar el navegador o reiniciar la computadora.
+
+- Facilidad de uso: LocalStorage es fácil de usar y no requiere configuración adicional.
+
+- Compatibilidad: LocalStorage es compatible con la mayoría de los navegadores modernos.
+
+### Limitaciones de LocalStorage en React
+
+- Capacidad de almacenamiento: LocalStorage tiene un límite de almacenamiento de 5 MB por dominio.
+
+- Datos en texto plano: Los datos almacenados en LocalStorage son en texto plano, lo que puede ser un problema para datos sensibles.
+
+- No es seguro: LocalStorage no es seguro y no debe usarse para almacenar información confidencial, como contraseñas o tokens de acceso.
+
+### SessionStorage en React
+
+### ¿Qué es SessionStorage?
+
+SessionStorage es una característica de los navegadores web que permite almacenar datos de forma persistente durante la sesión del usuario. Los datos almacenados en SessionStorage se eliminan cuando se cierra la pestaña del navegador o se apaga la computadora.
+
+### ¿Por qué usar SessionStorage en React?
+
+SessionStorage es útil para almacenar datos temporales durante la sesión del usuario, como datos de formularios, preferencias de usuario, etc. Al usar SessionStorage en React, puedes mantener el estado de la aplicación durante la sesión del usuario.
+
+### ¿Cómo usar SessionStorage en React?
+
+Para usar SessionStorage en React, sigue estos pasos:
+
+1. Importa el hook useState de React.
+
+2. Usa useState para inicializar el estado con los datos de SessionStorage.
+
+3. Guarda y actualiza los datos en SessionStorage utilizando el hook useEffect.
+
+### Ejemplo de SessionStorage en React
+
+```javascript
+import React, {useState, useEffect} from "react";
+
+const App = () => {
+ const [count, setCount] = useState(() => {
+  const storedCount = sessionStorage.getItem("count");
+  return storedCount ? JSON.parse(storedCount) : 0;
+ });
+
+ useEffect(() => {
+  sessionStorage.setItem("count", JSON.stringify(count));
+ }, [count]);
+
+ return (
+  <div>
+   <p>Count: {count}</p>
+   <button onClick={() => setCount(count + 1)}>Increment</button>
+  </div>
+ );
+};
+```
+
+### Ventajas de SessionStorage en React
+
+- Persistencia durante la sesión: Los datos almacenados en SessionStorage persisten durante la sesión del usuario.
+
+- Facilidad de uso: SessionStorage es fácil de usar y no requiere configuración adicional.
+
+- Compatibilidad: SessionStorage es compatible con la mayoría de los navegadores modernos.
+
+### Limitaciones de SessionStorage en React
+
+- Datos temporales: Los datos almacenados en SessionStorage se eliminan cuando se cierra la pestaña del navegador o se apaga la computadora.
+
+- Capacidad de almacenamiento: SessionStorage tiene un límite de almacenamiento de 5 MB por dominio.
+
+- Datos en texto plano: Los datos almacenados en SessionStorage son en texto plano, lo que puede ser un problema para datos sensibles.
+
+### useReducer + useContext en React
+
+### ¿Qué es useReducer en React?
+
+useReducer es un hook de React que se utiliza para manejar estados complejos y lógica de actualización en componentes funcionales. useReducer es una alternativa a useState cuando el estado tiene una lógica más compleja, como actualizaciones condicionales o lógica de estado dependiente.
+
+### ¿Por qué usar useReducer en React?
+
+useReducer es útil cuando tienes estados complejos que requieren lógica de actualización más avanzada, como actualizaciones condicionales, actualizaciones basadas en el estado anterior, etc. useReducer también es útil para separar la lógica de actualización del estado del componente, lo que hace que el código sea más limpio y mantenible.
+
+### ¿Cómo usar useReducer en React?
+
+Para usar useReducer en React, sigue estos pasos:
+
+1. Define un reducer que maneje las actualizaciones del estado.
+
+2. Llama a useReducer con el reducer y el estado inicial.
+
+3. Desestructura el estado y la función dispatch del hook useReducer.
+
+4. Llama a dispatch con una acción para actualizar el estado.
+
+### Ejemplo de useReducer en React
+
+```javascript
+import React, {useReducer} from "react";
+
+// Definir un reducer
+const reducer = (state, action) => {
+ switch (action.type) {
+  case "increment":
+   return {...state, count: state.count + 1};
+  case "decrement":
+   return {...state, count: state.count - 1};
+  default:
+   return state;
+ }
+};
+
+const App = () => {
+ // Llamar a useReducer con el reducer y el estado inicial
+ const [state, dispatch] = useReducer(reducer, {count: 0});
+
+ return (
+  <div>
+   <p>Count: {state.count}</p>
+   <button onClick={() => dispatch({type: "increment"})}>Increment</button>
+   <button onClick={() => dispatch({type: "decrement"})}>Decrement</button>
+  </div>
+ );
+};
+```
+
+### Combinar useReducer y useContext en React
+
+Puedes combinar useReducer y useContext en React para manejar estados complejos y compartirlos entre múltiples componentes. Esto es útil cuando necesitas compartir un estado complejo entre varios componentes sin tener que pasar props manualmente en cada nivel.
+
+### Buenas Prácticas con useReducer y useContext en React
+
+- Usa useReducer para estados complejos: useReducer es ideal para manejar estados complejos que requieren lógica de actualización avanzada.
+
+- Usa useContext para compartir estados: useContext es útil para compartir estados entre múltiples componentes sin tener que pasar props manualmente en cada nivel.
+
+- Divide la lógica de estado: Separa la lógica de estado en reducers para mantener el código limpio y mantenible.
+
+- Usa acciones descriptivas: Usa acciones descriptivas en el reducer para facilitar la comprensión y el mantenimiento del código.
+
+### Ejemplo de useReducer + useContext en React
+
+```javascript
+import React, {useReducer, useContext} from "react";
+
+// Crear un Context para el estado
+const StateContext = React.createContext();
+
+// Definir un reducer
+const reducer = (state, action) => {
+ switch (action.type) {
+  case "increment":
+   return {...state, count: state.count + 1};
+  case "decrement":
+   return {...state, count: state.count - 1};
+  default:
+   return state;
+ }
+};
+
+// Crear un Provider para envolver los componentes
+const StateProvider = ({children}) => {
+ const [state, dispatch] = useReducer(reducer, {count: 0});
+
+ return (
+  <StateContext.Provider value={{state, dispatch}}>
+   {children}
+  </StateContext.Provider>
+ );
+};
+
+// Crear un hook useContext para consumir el estado
+const useState = () => {
+ const context = useContext(StateContext);
+ if (!context) {
+  throw new Error("useState must be used within a StateProvider");
+ }
+ return context;
+};
+
+// Consumir el estado en un componente
+const App = () => {
+ const {state, dispatch} = useState();
+
+ return (
+  <div>
+   <p>Count: {state.count}</p>
+   <button onClick={() => dispatch({type: "increment"})}>Increment</button>
+   <button onClick={() => dispatch({type: "decrement"})}>Decrement</button>
+  </div>
+ );
+};
+
+// Envolver la aplicación con el Provider
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <StateProvider>
+      <App />
+    </StateProvider>
+  </StrictMode>,
+)
+```
