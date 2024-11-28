@@ -1,17 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import {createContext, useContext, useEffect, useState} from "react";
-
-// En la carpeta de servicios, crear un archivo llamado api.js con el siguiente contenido:
-const getProducts = async () => {
-	try {
-		const endPoint = "https://rickandmortyapi.com/api/character";
-		const response = await fetch(endPoint);
-		const data = await response.json();
-		return data.results;
-	} catch (error) {
-		console.log("Error al obtener los productos", error);
-	}
-};
+import {getProducts} from "../service/getProducts";
 
 const CartContext = createContext();
 
