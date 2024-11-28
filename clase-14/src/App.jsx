@@ -1,13 +1,13 @@
 import './App.css'
-import Autenticacion from './components/Autenticacion'
-// import ThemeApp from './components/ThemeApp'
+import ThemeApp from './components/themeApp/ThemeApp'
+// import Autenticacion from './components/Autenticacion'
 
 function App() {
 
   return (
     <>
-      {/* <ThemeApp /> */}
-      <Autenticacion />
+      <ThemeApp/>
+      {/* <Autenticacion /> */}
     </>
   )
 }
