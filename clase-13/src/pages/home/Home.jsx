@@ -9,7 +9,7 @@ import {useCart} from "../../context/CartContext";
 // ];
 
 const Home = () => {
-	const {addToCart, products} = useCart();
+	const { addToCart, products } = useCart();
 
 	return (
 		<main className={styles.container}>

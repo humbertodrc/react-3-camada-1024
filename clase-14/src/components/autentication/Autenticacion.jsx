@@ -1,15 +1,20 @@
 import {useState} from "react";
 
 const Autenticacion = () => {
-	const [token, setToken] = useState("");
+	const [token, setToken] = useState(() => {
+		const tokenLocalStorage = sessionStorage.getItem("token");
+		return tokenLocalStorage ? tokenLocalStorage : "";
+	});
 
 	const login = () => {
 		const newTokeN = "123456";
 		setToken(newTokeN);
+		sessionStorage.setItem("token", newTokeN);
 	};
 
 	const logout = () => {
 		setToken("");
+		sessionStorage.removeItem("token");
 	};
 
 	return (
