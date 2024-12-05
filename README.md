@@ -59,7 +59,7 @@ Las plantillas de cadena permiten incrustar variables y expresiones dentro de un
 
 ```javascript
 const nombre = "Humberto";
-const saludo = `Hola, ${nombre}!`; // "Hola, Humberto!"
+, ${nombre}!`; // "Hola, Humberto!"
 ```
 
 ### Default Parameters (Parámetros por Defecto)
@@ -1663,3 +1663,130 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 ```
+
+### Custom Hooks en React
+
+### ¿Qué son los Custom Hooks en React?
+
+Los Custom Hooks son funciones de JavaScript que utilizan Hooks de React para encapsular lógica reutilizable en componentes funcionales. Los Custom Hooks permiten compartir lógica entre componentes sin tener que duplicar código o utilizar patrones de renderizado propios.
+
+### ¿Por qué usar Custom Hooks en React?
+
+Los Custom Hooks son útiles para compartir lógica entre componentes funcionales de React. Al encapsular la lógica en un Custom Hook, puedes reutilizarla en múltiples componentes sin tener que duplicar código. Los Custom Hooks también hacen que el código sea más limpio y mantenible al separar la lógica de los componentes.
+
+### ¿Cómo crear un Custom Hook en React?
+
+Para crear un Custom Hook en React, sigue estos pasos:
+
+1. Crea una función que utilice Hooks de React.
+
+2. Define la lógica reutilizable dentro de la función.
+
+3. Devuelve los valores necesarios desde la función.
+
+4. Utiliza el Custom Hook en componentes funcionales.
+
+### Ejemplo de Custom Hook en React
+
+```javascript
+import {useState} from "react";
+
+// Crear un Custom Hook
+const useCounter = (initialValue) => {
+ const [count, setCount] = useState(initialValue);
+
+ const increment = () => {
+  setCount(count + 1);
+ };
+
+ const decrement = () => {
+  setCount(count - 1);
+ };
+
+ return {count, increment, decrement};
+};
+
+// Consumir el Custom Hook en un componente
+
+const App = () => {
+ const {count, increment, decrement} = useCounter(0);
+
+ return (
+  <div>
+   <p>Count: {count}</p>
+   <button onClick={increment}>Increment</button>
+   <button onClick={decrement}>Decrement</button>
+  </div>
+ );
+};
+```
+
+### Ventajas de los Custom Hooks en React
+
+- Reutilización de lógica: Los Custom Hooks permiten reutilizar lógica entre múltiples componentes funcionales.
+
+- Separación de preocupaciones: Los Custom Hooks separan la lógica de los componentes, lo que hace que el código sea más limpio y mantenible.
+
+- Composición: Los Custom Hooks pueden componerse para crear lógica más compleja a partir de lógica reutilizable.
+
+### Buenas Prácticas con Custom Hooks en React
+
+- Nombra los Custom Hooks con el prefijo "use": Para indicar que un hook es un Custom Hook, nómbralo con el prefijo "use" (por ejemplo, useCounter).
+
+- Divide la lógica en Custom Hooks: Separa la lógica de los componentes en Custom Hooks para mantener el código limpio y mantenible.
+
+- Reutiliza Custom Hooks: Reutiliza Custom Hooks en múltiples componentes para evitar duplicar código.
+
+- Documenta los Custom Hooks: Documenta la funcionalidad y el uso de los Custom Hooks para facilitar su comprensión y reutilización.
+
+### Ejemplo de Custom Hook Avanzado en React
+
+```javascript
+import {useState, useEffect} from "react";
+
+// Crear un Custom Hook avanzado
+const useLocalStorage = (key, initialValue) => {
+ const [value, setValue] = useState(() => {
+  const storedValue = localStorage.getItem(key);
+  return storedValue ? JSON.parse(storedValue) : initialValue;
+ });
+
+ useEffect(() => {
+  localStorage.setItem(key, JSON.stringify(value));
+ }, [key, value]);
+
+ const clearValue = () => {
+  localStorage.removeItem(key);
+  setValue(initialValue);
+ };
+
+ return {value, setValue, clearValue};
+};
+
+// Consumir el Custom Hook avanzado en un componente
+
+const App = () => {
+ const {value, setValue, clearValue} = useLocalStorage("count", 0);
+
+ return (
+  <div>
+   <p>Count: {value}</p>
+   <button onClick={() => setValue(value + 1)}>Increment</button>
+   <button onClick={() => clearValue()}>Clear</button>
+  </div>
+ );
+};
+```
+
+### Resumen de Custom Hooks en React
+
+- Los Custom Hooks son funciones de JavaScript que utilizan Hooks de React para encapsular lógica reutilizable en componentes funcionales.
+
+- Los Custom Hooks permiten compartir lógica entre componentes sin tener que duplicar código o utilizar patrones de renderizado propios.
+
+- Para crear un Custom Hook, define una función que utilice Hooks de React, defina la lógica reutilizable dentro de la función y devuelva los valores necesarios.
+
+- Los Custom Hooks son útiles para reutilizar lógica, separar preocupaciones, componer lógica compleja y mantener el código limpio y mantenible.
+
+- Al crear Custom Hooks, nómbralos con el prefijo "use", divide la lógica en Custom Hooks, reutiliza Custom Hooks y documenta su funcionalidad y uso.
+
