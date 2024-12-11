@@ -14,7 +14,7 @@ function App() {
 	// 	resetForm();
 	// };
 
-	console.log(data, loading, error);
+	// console.log(data, loading, error);
 
 	return (
     <section>
