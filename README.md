@@ -1790,3 +1790,88 @@ const App = () => {
 
 - Al crear Custom Hooks, nómbralos con el prefijo "use", divide la lógica en Custom Hooks, reutiliza Custom Hooks y documenta su funcionalidad y uso.
 
+### ErrorBoundary en React
+
+### ¿Qué es un ErrorBoundary en React?
+
+ErrorBoundary es un componente de React que se utiliza para capturar errores en componentes descendientes y mostrar una interfaz de usuario alternativa en caso de que ocurra un error. ErrorBoundary ayuda a evitar que los errores se propaguen por toda la aplicación y a proporcionar una experiencia de usuario más robusta.
+
+### ¿Por qué usar un ErrorBoundary en React?
+
+ErrorBoundary es útil para manejar errores en componentes de React y proporcionar una experiencia de usuario más amigable en caso de que ocurra un error. ErrorBoundary evita que los errores se propaguen por toda la aplicación y permite mostrar un mensaje de error personalizado en lugar de una pantalla en blanco o un mensaje de error genérico.
+
+### ¿Cómo usar un ErrorBoundary en React?
+
+Para usar un ErrorBoundary en React, sigue estos pasos:
+
+1. Crea un componente de ErrorBoundary que extienda la clase Component y defina los métodos componentDidCatch y render.
+
+2. En el método componentDidCatch, captura los errores y actualiza el estado del componente.
+
+3. En el método render, muestra una interfaz de usuario alternativa en caso de que ocurra un error.
+
+4. Envuelve los componentes que deseas proteger con el componente de ErrorBoundary.
+
+### Ejemplo de ErrorBoundary en React
+
+```javascript
+import React, {Component} from "react";
+
+class ErrorBoundary extends Component {
+ constructor(props) {
+  super(props);
+  this.state = {hasError: false};
+ }
+
+ componentDidCatch(error, info) {
+  this.setState({hasError: true});
+ }
+
+ render() {
+  if (this.state.hasError) {
+   return <h1>Something went wrong.</h1>;
+  }
+
+  return this.props.children;
+ }
+}
+
+const App = () => {
+ return (
+  <ErrorBoundary>
+   <div>
+    <h1>Hello, World!</h1>
+    <ChildComponent />
+   </div>
+  </ErrorBoundary>
+ );
+};
+```
+
+### Ventajas de usar un ErrorBoundary en React
+
+- Evita la propagación de errores: ErrorBoundary evita que los errores se propaguen por toda la aplicación y proporciona una experiencia de usuario más robusta.
+
+- Muestra una interfaz de usuario alternativa: ErrorBoundary permite mostrar una interfaz de usuario alternativa en caso de que ocurra un error, en lugar de una pantalla en blanco o un mensaje de error genérico.
+
+- Mejora la experiencia de usuario: ErrorBoundary ayuda a proporcionar una experiencia de usuario más amigable al manejar errores de forma elegante y mostrar mensajes de error personalizados.
+
+### Buenas Prácticas con ErrorBoundary en React
+
+- Envuelve componentes críticos: Envuelve componentes críticos con ErrorBoundary para evitar que los errores se propaguen por toda la aplicación.
+
+- Muestra un mensaje de error personalizado: Muestra un mensaje de error personalizado en el componente de ErrorBoundary para informar al usuario sobre el error y cómo solucionarlo.
+
+- Registra los errores: Registra los errores capturados por ErrorBoundary para facilitar la depuración y solución de problemas.
+
+### Resumen de ErrorBoundary en React
+
+- ErrorBoundary es un componente de React que se utiliza para capturar errores en componentes descendientes y mostrar una interfaz de usuario alternativa en caso de que ocurra un error.
+
+- ErrorBoundary evita que los errores se propaguen por toda la aplicación y proporciona una experiencia de usuario más robusta al mostrar mensajes de error personalizados.
+
+- Para usar ErrorBoundary en React, crea un componente de ErrorBoundary que extienda la clase Component y defina los métodos componentDidCatch y render.
+
+- Envuelve los componentes críticos con el componente de ErrorBoundary para evitar que los errores se propaguen y mostrar una interfaz de usuario alternativa en caso de que ocurra un error.
+
+- ErrorBoundary es útil para manejar errores en componentes de React, proporcionar una experiencia de usuario más amigable y mejorar la robustez de la aplicación.
