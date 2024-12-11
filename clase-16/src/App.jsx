@@ -1,18 +1,18 @@
 import "./App.css";
 import {useFetch} from "./hooks/useFetch";
-import {useForm} from "./hooks/useForm";
+// import {useForm} from "./hooks/useForm";
 
 function App() {
-	const {values, handleChange, resetForm} = useForm({name: "", email: ""});
+	// const {values, handleChange, resetForm} = useForm({name: "", email: ""});
 	const {data, loading, error} = useFetch(
 		"https://jsonplaceholder.typicode.com/posts"
 	);
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		console.log(values);
-		resetForm();
-	};
+	// const handleSubmit = (event) => {
+	// 	event.preventDefault();
+	// 	console.log(values);
+	// 	resetForm();
+	// };
 
 	console.log(data, loading, error);
 
@@ -28,7 +28,7 @@ function App() {
           </article>
         ))}
       </div>
-			<div>
+			{/* <div>
 				<h1>Custom Hook</h1>
 				<form onSubmit={handleSubmit}>
 					<div>
@@ -53,7 +53,7 @@ function App() {
 					</div>
 					<button type="submit">Enviar</button>
 				</form>
-			</div>
+			</div> */}
 		</section>
 	);
 }
